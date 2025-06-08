@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم المدير - Admin Control Panel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e);min-height:100vh;color:#fff;padding:20px}.container{max-width:1200px;margin:0 auto}.header{text-align:center;margin-bottom:40px;padding:30px;background:rgba(255,255,255,0.1);border-radius:20px;backdrop-filter:blur(20px)}.header h1{font-size:2.5rem;margin-bottom:10px;color:#4ade80}.header p{opacity:0.9}.card{background:rgba(255,255,255,0.1);border-radius:15px;padding:25px;margin-bottom:25px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2)}.card h2{color:#60a5fa;margin-bottom:20px;font-size:1.5rem}.btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 25px;border-radius:8px;cursor:pointer;margin:5px;transition:all 0.3s ease;font-size:14px}.btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.3)}.btn-success{background:linear-gradient(135deg,#10b981,#059669)}.btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626)}.btn-warning{background:linear-gradient(135deg,#f59e0b,#d97706)}.btn-info{background:linear-gradient(135deg,#3b82f6,#2563eb)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:25px}.stat-card{background:rgba(255,255,255,0.1);padding:20px;border-radius:10px;text-align:center}.stat-number{font-size:2rem;font-weight:bold;color:#4ade80}.stat-label{opacity:0.8;margin-top:5px}.table{width:100%;border-collapse:collapse;margin-top:15px}.table th,.table td{padding:12px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.1)}.table th{background:rgba(255,255,255,0.1);color:#60a5fa}.table tr:hover{background:rgba(255,255,255,0.05)}.form-group{margin-bottom:15px}.form-group label{display:block;margin-bottom:5px;color:#60a5fa}.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px;border:1px solid rgba(255,255,255,0.3);border-radius:5px;background:rgba(255,255,255,0.1);color:#fff}.form-group input::placeholder{color:rgba(255,255,255,0.6)}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:1000}.modal-content{background:#1a1a2e;padding:30px;border-radius:15px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto}.notification{position:fixed;top:20px;right:20px;background:#10b981;color:#fff;padding:15px 25px;border-radius:10px;z-index:1001;transform:translateX(400px);transition:transform 0.3s ease}.notification.show{transform:translateX(0)}.notification.error{background:#ef4444}.notification.warning{background:#f59e0b}@media(max-width:768px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.container{padding:10px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🔐 لوحة تحكم المدير</h1>
+<p>إدارة نظام اختبارات الألوان للكشف عن المخدرات</p>
+<p style="font-size:0.9rem;opacity:0.7;margin-top:10px">Admin Control Panel - Color Testing System</p>
+</div>
+<div class="stats">
+<div class="stat-card">
+<div class="stat-number" id="totalTests">0</div>
+<div class="stat-label">إجمالي الاختبارات</div>
+</div>
+<div class="stat-card">
+<div class="stat-number" id="marquisTests">0</div>
+<div class="stat-label">اختبارات ماركيز</div>
+</div>
+<div class="stat-card">
+<div class="stat-number" id="ferricTests">0</div>
+<div class="stat-label">اختبارات كبريتات الحديد</div>
+</div>
+<div class="stat-card">
+<div class="stat-number" id="meckeTests">0</div>
+<div class="stat-label">اختبارات ميكي</div>
+</div>
+</div>
+<div class="grid">
+<div class="card">
+<h2>📊 إدارة قاعدة البيانات</h2>
+<button class="btn btn-success" onclick="exportDatabase()">📤 تصدير قاعدة البيانات</button>
+<button class="btn btn-info" onclick="importDatabase()">📥 استيراد قاعدة البيانات</button>
+<button class="btn btn-warning" onclick="addNewTest()">➕ إضافة اختبار جديد</button>
+<button class="btn btn-danger" onclick="resetDatabase()">🔄 إعادة تعيين قاعدة البيانات</button>
+</div>
+<div class="card">
+<h2>🧪 إدارة الاختبارات</h2>
+<button class="btn btn-info" onclick="viewAllTests()">👁️ عرض جميع الاختبارات</button>
+<button class="btn btn-warning" onclick="editTest()">✏️ تعديل اختبار</button>
+<button class="btn btn-danger" onclick="deleteTest()">🗑️ حذف اختبار</button>
+<button class="btn btn-success" onclick="duplicateTest()">📋 نسخ اختبار</button>
+</div>
+<div class="card">
+<h2>⚙️ إعدادات النظام</h2>
+<button class="btn btn-info" onclick="systemSettings()">🔧 إعدادات عامة</button>
+<button class="btn btn-warning" onclick="backupSystem()">💾 نسخة احتياطية</button>
+<button class="btn btn-success" onclick="systemLogs()">📋 سجلات النظام</button>
+<button class="btn btn-danger" onclick="clearCache()">🧹 مسح التخزين المؤقت</button>
+</div>
+<div class="card">
+<h2>📈 التقارير والإحصائيات</h2>
+<button class="btn btn-info" onclick="generateReport()">📊 تقرير شامل</button>
+<button class="btn btn-success" onclick="usageStats()">📈 إحصائيات الاستخدام</button>
+<button class="btn btn-warning" onclick="errorLogs()">⚠️ سجل الأخطاء</button>
+<button class="btn btn-info" onclick="exportStats()">📤 تصدير الإحصائيات</button>
+</div>
+</div>
+<div class="card">
+<h2>🗃️ قاعدة البيانات الحالية</h2>
+<div id="databaseTable"></div>
+</div>
+</div>
+
+<!-- Copyright Section -->
+<footer class="mt-16 text-center">
+<div class="glass-effect p-6 rounded-2xl border border-gray-500/30 max-w-2xl mx-auto">
+<div class="flex items-center justify-center mb-4">
+<i class="fas fa-copyright text-blue-400 text-xl mr-3"></i>
+<span class="text-xl font-bold text-white">2025</span>
+</div>
+<p class="text-gray-300 mb-4">جميع الحقوق محفوظة لدى مطوري البرنامج</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-3 mb-4">
+<div class="flex items-center glass-effect px-4 py-2 rounded-lg border border-purple-500/30 hover:border-purple-400 transition-all duration-300">
+<i class="fas fa-user-tie text-purple-400 mr-2"></i>
+<span class="text-white font-semibold">محمد نفاع الرويلي</span>
+</div>
+<div class="flex items-center glass-effect px-4 py-2 rounded-lg border border-blue-500/30 hover:border-blue-400 transition-all duration-300">
+<i class="fas fa-user-graduate text-blue-400 mr-2"></i>
+<span class="text-white font-semibold">يوسف مسير العنزي</span>
+</div>
+</div>
+<div class="text-xs text-gray-400 space-y-1">
+<p>تم تطوير هذا النظام لأغراض تعليمية وبحثية</p>
+<p>الإصدار 1.0.0 - يناير 2025</p>
+</div>
+</div>
+</footer>
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3 id="modalTitle">عنوان النافذة</h3>
+<div id="modalBody"></div>
+<div style="text-align:center;margin-top:20px">
+<button class="btn" onclick="closeModal()">إغلاق</button>
+</div>
+</div>
+</div>
+<script>
+let chemicalDB=[{method_name:'Marquis Test',color_result:'Purple to violet',possible_substance:'Opium'},{method_name:'Marquis Test',color_result:'Brownish purple',possible_substance:'Morphine'},{method_name:'Marquis Test',color_result:'Purple',possible_substance:'Heroin'},{method_name:'Marquis Test',color_result:'Orange → Brown',possible_substance:'Amphetamine'},{method_name:'Marquis Test',color_result:'Orange',possible_substance:'Methamphetamine'},{method_name:'Marquis Test',color_result:'Red → Brown',possible_substance:'MDMA (Ecstasy)'},{method_name:'Marquis Test',color_result:'Yellow → Brown',possible_substance:'Mescaline'},{method_name:'Marquis Test',color_result:'No color change',possible_substance:'Cocaine, Cannabis'},{method_name:'Ferric Sulfate Test',color_result:'Blue',possible_substance:'Cocaine'},{method_name:'Ferric Sulfate Test',color_result:'Green',possible_substance:'Cannabis compounds'},{method_name:'Ferric Sulfate Test',color_result:'Purple',possible_substance:'Phenothiazines'},{method_name:'Ferric Sulfate Test',color_result:'Red',possible_substance:'Salicylates'},{method_name:'Ferric Sulfate Test',color_result:'Yellow',possible_substance:'Barbiturates'},{method_name:'Mecke Test',color_result:'Blue to green',possible_substance:'Morphine'},{method_name:'Mecke Test',color_result:'Blue',possible_substance:'Codeine'},{method_name:'Mecke Test',color_result:'Dark green',possible_substance:'Heroin'},{method_name:'Mecke Test',color_result:'Yellow → Light Green',possible_substance:'MDMA (Ecstasy)'},{method_name:'Mecke Test',color_result:'Orange',possible_substance:'Methamphetamine'},{method_name:'Mecke Test',color_result:'No color change',possible_substance:'Cocaine, Cannabis'}];
+function updateStats(){document.getElementById('totalTests').textContent=chemicalDB.length;document.getElementById('marquisTests').textContent=chemicalDB.filter(t=>t.method_name==='Marquis Test').length;document.getElementById('ferricTests').textContent=chemicalDB.filter(t=>t.method_name==='Ferric Sulfate Test').length;document.getElementById('meckeTests').textContent=chemicalDB.filter(t=>t.method_name==='Mecke Test').length}
+function updateDatabaseTable(){const table=document.getElementById('databaseTable');let html='<table class="table"><thead><tr><th>نوع الاختبار</th><th>نتيجة اللون</th><th>المادة المحتملة</th><th>الإجراءات</th></tr></thead><tbody>';chemicalDB.forEach((test,index)=>{html+=`<tr><td>${test.method_name}</td><td>${test.color_result}</td><td>${test.possible_substance}</td><td><button class="btn btn-warning" onclick="editTestItem(${index})">تعديل</button> <button class="btn btn-danger" onclick="deleteTestItem(${index})">حذف</button></td></tr>`});html+='</tbody></table>';table.innerHTML=html}
+function exportDatabase(){const data=JSON.stringify(chemicalDB,null,2);const blob=new Blob([data],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`chemical-database-${new Date().toISOString().split('T')[0]}.json`;a.click();showNotification('تم تصدير قاعدة البيانات بنجاح')}
+function importDatabase(){const input=document.createElement('input');input.type='file';input.accept='.json';input.onchange=function(e){const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=function(e){try{const newDB=JSON.parse(e.target.result);if(Array.isArray(newDB)&&newDB.length>0&&newDB[0].method_name){chemicalDB=newDB;updateStats();updateDatabaseTable();showNotification('تم استيراد قاعدة البيانات بنجاح')}else{showNotification('ملف قاعدة البيانات غير صحيح','error')}}catch(err){showNotification('خطأ في قراءة الملف','error')}};reader.readAsText(file)}};input.click()}
+function addNewTest(){showModal('إضافة اختبار جديد',`<div class="form-group"><label>نوع الاختبار:</label><select id="testMethod"><option value="Marquis Test">Marquis Test</option><option value="Ferric Sulfate Test">Ferric Sulfate Test</option><option value="Mecke Test">Mecke Test</option></select></div><div class="form-group"><label>نتيجة اللون:</label><input type="text" id="colorResult" placeholder="مثال: Purple to violet"></div><div class="form-group"><label>المادة المحتملة:</label><input type="text" id="possibleSubstance" placeholder="مثال: Opium"></div><button class="btn btn-success" onclick="saveNewTest()">حفظ الاختبار</button>`)}
+function saveNewTest(){const method=document.getElementById('testMethod').value;const color=document.getElementById('colorResult').value;const substance=document.getElementById('possibleSubstance').value;if(method&&color&&substance){chemicalDB.push({method_name:method,color_result:color,possible_substance:substance});updateStats();updateDatabaseTable();closeModal();showNotification('تم إضافة الاختبار بنجاح')}else{showNotification('يرجى ملء جميع الحقول','error')}}
+function editTestItem(index){const test=chemicalDB[index];showModal('تعديل الاختبار',`<div class="form-group"><label>نوع الاختبار:</label><select id="editTestMethod"><option value="Marquis Test" ${test.method_name==='Marquis Test'?'selected':''}>Marquis Test</option><option value="Ferric Sulfate Test" ${test.method_name==='Ferric Sulfate Test'?'selected':''}>Ferric Sulfate Test</option><option value="Mecke Test" ${test.method_name==='Mecke Test'?'selected':''}>Mecke Test</option></select></div><div class="form-group"><label>نتيجة اللون:</label><input type="text" id="editColorResult" value="${test.color_result}"></div><div class="form-group"><label>المادة المحتملة:</label><input type="text" id="editPossibleSubstance" value="${test.possible_substance}"></div><button class="btn btn-success" onclick="saveEditTest(${index})">حفظ التعديلات</button>`)}
+function saveEditTest(index){const method=document.getElementById('editTestMethod').value;const color=document.getElementById('editColorResult').value;const substance=document.getElementById('editPossibleSubstance').value;if(method&&color&&substance){chemicalDB[index]={method_name:method,color_result:color,possible_substance:substance};updateStats();updateDatabaseTable();closeModal();showNotification('تم تحديث الاختبار بنجاح')}else{showNotification('يرجى ملء جميع الحقول','error')}}
+function deleteTestItem(index){if(confirm('هل أنت متأكد من حذف هذا الاختبار؟')){chemicalDB.splice(index,1);updateStats();updateDatabaseTable();showNotification('تم حذف الاختبار بنجاح')}}
+function resetDatabase(){if(confirm('هل أنت متأكد من إعادة تعيين قاعدة البيانات؟ سيتم فقدان جميع البيانات!')){location.reload()}}
+function viewAllTests(){showModal('جميع الاختبارات',`<div style="max-height:400px;overflow-y:auto">${document.getElementById('databaseTable').innerHTML}</div>`)}
+function showModal(title,content){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=content;document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function showNotification(message,type='success'){const notification=document.createElement('div');notification.className=`notification ${type} show`;notification.textContent=message;document.body.appendChild(notification);setTimeout(()=>{notification.classList.remove('show');setTimeout(()=>document.body.removeChild(notification),300)},3000)}
+function generateReport(){const report={totalTests:chemicalDB.length,testsByMethod:{marquis:chemicalDB.filter(t=>t.method_name==='Marquis Test').length,ferric:chemicalDB.filter(t=>t.method_name==='Ferric Sulfate Test').length,mecke:chemicalDB.filter(t=>t.method_name==='Mecke Test').length},generatedAt:new Date().toISOString()};const data=JSON.stringify(report,null,2);const blob=new Blob([data],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`system-report-${new Date().toISOString().split('T')[0]}.json`;a.click();showNotification('تم إنشاء التقرير بنجاح')}
+updateStats();updateDatabaseTable();
+</script>
+</body>
+</html>

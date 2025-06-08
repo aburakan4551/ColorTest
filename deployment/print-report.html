@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقرير اختبار الألوان - Color Test Report</title>
+<style>
+@media print{body{margin:0;padding:10px}.no-print{display:none!important}.container{padding:15mm!important}}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Arial','Tahoma',sans-serif;line-height:1.4;color:#333;background:white;font-size:10pt}.container{max-width:210mm;margin:0 auto;padding:15mm;background:white;min-height:297mm}.header{text-align:center;border-bottom:2px solid #1a1a2e;padding-bottom:10px;margin-bottom:15px}.header h1{font-size:14pt;font-weight:bold;color:#1a1a2e;margin-bottom:5px}.header h2{font-size:12pt;color:#666;margin-bottom:8px}.header .logo{width:40px;height:40px;background:linear-gradient(135deg,#1a1a2e,#6366f1);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16pt}.test-info{background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;padding:12px;margin-bottom:15px}.test-info h3{font-size:12pt;color:#1a1a2e;margin-bottom:8px;border-bottom:1px solid #dee2e6;padding-bottom:4px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.info-item{display:flex;flex-direction:column}.info-label{font-weight:bold;color:#495057;margin-bottom:2px;font-size:9pt}.info-value{color:#212529;font-size:10pt}.safety-warnings{background:#fff3cd;border:1px solid #ffeaa7;border-radius:4px;padding:8px;margin-bottom:12px}.safety-warnings h4{color:#856404;margin-bottom:6px;font-size:11pt}.safety-warnings ul{list-style-type:disc;margin-right:15px}.safety-warnings li{margin-bottom:2px;color:#856404;font-size:9pt}.procedure-section{margin-bottom:15px}.procedure-section h3{font-size:12pt;color:#1a1a2e;margin-bottom:8px;border-bottom:1px solid #dee2e6;padding-bottom:4px}.steps-list{list-style:none;counter-reset:step-counter}.step-item{counter-increment:step-counter;margin-bottom:8px;padding:8px;background:#f8f9fa;border-left:3px solid #6366f1;border-radius:3px}.step-item::before{content:"الخطوة " counter(step-counter) ": ";font-weight:bold;color:#6366f1;display:inline;margin-left:5px;font-size:9pt}.step-arabic{margin-bottom:3px;font-weight:500;font-size:10pt;display:inline}.step-english{color:#666;font-size:9pt;font-style:italic;display:block;margin-top:2px}.color-section{background:#e3f2fd;border:1px solid #bbdefb;border-radius:4px;padding:10px;margin-bottom:15px;text-align:center}.color-section h3{font-size:12pt;color:#1565c0;margin-bottom:8px}.color-display{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}.color-swatch{width:40px;height:40px;border-radius:50%;border:2px solid #333;box-shadow:0 1px 4px rgba(0,0,0,0.2)}.color-names{text-align:center}.color-arabic{font-size:11pt;font-weight:bold;color:#1565c0;margin-bottom:3px}.color-english{font-size:10pt;color:#666}.results-section{background:#e8f5e8;border:1px solid #c8e6c9;border-radius:4px;padding:10px;margin-bottom:15px}.results-section h3{font-size:12pt;color:#2e7d32;margin-bottom:8px}.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.result-item{padding:6px;background:white;border-radius:3px;border-left:3px solid #4caf50}.result-label{font-weight:bold;color:#2e7d32;margin-bottom:2px;font-size:9pt}.result-value{color:#333;font-size:10pt}.footer{border-top:1px solid #e9ecef;padding-top:8px;margin-top:15px;text-align:center;font-size:8pt;color:#666}.developers{margin-bottom:4px;font-weight:bold}.timestamp{margin-bottom:4px}.page-number{font-size:8pt}.print-button{position:fixed;top:20px;left:20px;background:#6366f1;color:white;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(99,102,241,0.3);z-index:1000}.print-button:hover{background:#5856eb}.bilingual-text{margin-bottom:4px}.arabic-text{font-weight:500;margin-bottom:2px}.english-text{color:#666;font-size:9pt;font-style:italic}@media print{.header,.test-info,.safety-warnings,.procedure-section,.color-section,.results-section,.footer{page-break-inside:avoid}.container{max-height:267mm;overflow:hidden}h1,h2,h3,h4{page-break-after:avoid}.step-item,.result-item{page-break-inside:avoid}}@media screen and (max-width:768px){.container{padding:15px}.info-grid,.results-grid{grid-template-columns:1fr}.color-display{flex-direction:column;gap:10px}}
+</style>
+</head>
+<body>
+<button class="print-button no-print" onclick="printReport()">🖨️ طباعة التقرير / Print Report</button>
+<div class="container">
+<div class="header">
+<div class="logo">🧪</div>
+<h1>تقرير اختبار الألوان للكشف عن المخدرات</h1>
+<h2>Color Testing Report for Drug Detection</h2>
+<div class="bilingual-text">
+<div class="arabic-text">نظام اختبارات الألوان المتقدم</div>
+<div class="english-text">Advanced Color Testing System</div>
+</div>
+</div>
+<div class="test-info">
+<h3>معلومات الاختبار / Test Information</h3>
+<div class="info-grid">
+<div class="info-item">
+<div class="info-label">نوع الاختبار / Test Type:</div>
+<div class="info-value" id="testType">-</div>
+</div>
+<div class="info-item">
+<div class="info-label">رقم الاختبار / Test ID:</div>
+<div class="info-value" id="testId">-</div>
+</div>
+<div class="info-item">
+<div class="info-label">تاريخ الاختبار / Test Date:</div>
+<div class="info-value" id="testDate">-</div>
+</div>
+<div class="info-item">
+<div class="info-label">وقت الاختبار / Test Time:</div>
+<div class="info-value" id="testTime">-</div>
+</div>
+</div>
+</div>
+<div class="safety-warnings">
+<h4>⚠️ تحذيرات السلامة / Safety Warnings</h4>
+<ul>
+<li>استخدم القفازات الواقية / Wear protective gloves</li>
+<li>تأكد من التهوية الجيدة / Ensure proper ventilation</li>
+<li>لا تلمس الكواشف مباشرة / Do not touch reagents directly</li>
+<li>اتبع إجراءات التخلص الآمن / Follow safe disposal procedures</li>
+</ul>
+</div>
+<div class="procedure-section">
+<h3>خطوات الإجراء / Procedure Steps</h3>
+<ol class="steps-list" id="procedureSteps"></ol>
+</div>
+<div class="color-section">
+<h3>اللون المُلاحظ / Observed Color</h3>
+<div class="color-display">
+<div class="color-swatch" id="colorSwatch"></div>
+<div class="color-names">
+<div class="color-arabic" id="colorArabic">-</div>
+<div class="color-english" id="colorEnglish">-</div>
+</div>
+</div>
+</div>
+<div class="results-section">
+<h3>نتائج الاختبار / Test Results</h3>
+<div class="results-grid" id="testResults"></div>
+</div>
+<div class="footer">
+<div class="developers">مطوري النظام / System Developers: محمد نفاع الرويلي & يوسف مسير العنزي</div>
+<div class="timestamp" id="printTimestamp">-</div>
+<div class="page-number">صفحة 1 من 1 / Page 1 of 1</div>
+</div>
+</div>
+<script>
+let testData={testType:'',testId:'',testDate:'',testTime:'',procedureSteps:[],observedColor:{arabic:'',english:'',hex:''},results:{substance:'',confidence:'',reliability:'',recommendations:''}};
+function initializeReport(){const urlParams=new URLSearchParams(window.location.search);if(urlParams.has('data')){try{testData=JSON.parse(decodeURIComponent(urlParams.get('data')))}catch(e){console.error('Error parsing URL data:',e)}}else{const storedData=localStorage.getItem('colorTestReport');if(storedData){try{testData=JSON.parse(storedData)}catch(e){console.error('Error parsing stored data:',e)}}}populateReport()}
+function populateReport(){document.getElementById('testType').textContent=testData.testType||'غير محدد / Not specified';document.getElementById('testId').textContent=testData.testId||generateTestId();document.getElementById('testDate').textContent=testData.testDate||getCurrentDate();document.getElementById('testTime').textContent=testData.testTime||getCurrentTime();populateProcedureSteps();populateObservedColor();populateTestResults();document.getElementById('printTimestamp').textContent=`طُبع في / Printed on: ${getCurrentDateTime()}`}
+function generateTestId(){const date=new Date();const year=date.getFullYear().toString().substr(-2);const month=(date.getMonth()+1).toString().padStart(2,'0');const day=date.getDate().toString().padStart(2,'0');const time=date.getTime().toString().substr(-4);return`CT${year}${month}${day}-${time}`}
+function getCurrentDate(){const date=new Date();const arabicDate=date.toLocaleDateString('ar-SA');const englishDate=date.toLocaleDateString('en-US');return`${arabicDate} / ${englishDate}`}
+function getCurrentTime(){const date=new Date();const arabicTime=date.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});const englishTime=date.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});return`${arabicTime} / ${englishTime}`}
+function getCurrentDateTime(){const date=new Date();const arabicDateTime=date.toLocaleString('ar-SA');const englishDateTime=date.toLocaleString('en-US');return`${arabicDateTime} / ${englishDateTime}`}
+function populateProcedureSteps(){const stepsContainer=document.getElementById('procedureSteps');const defaultSteps=[{arabic:'ضع كمية صغيرة من المادة على لوحة الاختبار',english:'Place small amount of material on spot plate'},{arabic:'أضف قطرة واحدة من الكاشف الكيميائي',english:'Add one drop of chemical reagent'},{arabic:'راقب تغير اللون خلال 30 ثانية',english:'Observe color change within 30 seconds'},{arabic:'سجل النتيجة والملاحظات',english:'Record result and observations'}];let steps=testData.procedureSteps.length>0?testData.procedureSteps:defaultSteps;if(steps.length>4){steps=steps.slice(0,4)}stepsContainer.innerHTML='';steps.forEach((step,index)=>{const stepElement=document.createElement('li');stepElement.className='step-item';stepElement.innerHTML=`<span class="step-arabic">${step.arabic}</span><div class="step-english">${step.english}</div>`;stepsContainer.appendChild(stepElement)})}
+function populateObservedColor(){const colorSwatch=document.getElementById('colorSwatch');const colorArabic=document.getElementById('colorArabic');const colorEnglish=document.getElementById('colorEnglish');if(testData.observedColor.hex){colorSwatch.style.backgroundColor=testData.observedColor.hex}else{colorSwatch.style.backgroundColor='#cccccc'}colorArabic.textContent=testData.observedColor.arabic||'لم يتم تحديد اللون';colorEnglish.textContent=testData.observedColor.english||'Color not specified'}
+function populateTestResults(){const resultsContainer=document.getElementById('testResults');const results=[{labelAr:'المادة المكتشفة',labelEn:'Detected Substance',value:testData.results.substance||'غير محدد / Not specified'},{labelAr:'مستوى الثقة',labelEn:'Confidence Level',value:testData.results.confidence||'غير محدد / Not specified'},{labelAr:'موثوقية النتيجة',labelEn:'Result Reliability',value:testData.results.reliability||'غير محدد / Not specified'},{labelAr:'التوصيات',labelEn:'Recommendations',value:'اختبارات تأكيدية إضافية / Additional confirmatory tests'}];resultsContainer.innerHTML='';results.forEach(result=>{const resultElement=document.createElement('div');resultElement.className='result-item';resultElement.innerHTML=`<div class="result-label">${result.labelAr} / ${result.labelEn}:</div><div class="result-value">${result.value}</div>`;resultsContainer.appendChild(resultElement)})}
+function printReport(){window.print()}
+function setTestData(data){testData={...testData,...data};populateReport()}
+function generateReport(data){localStorage.setItem('colorTestReport',JSON.stringify(data));testData=data;populateReport()}
+document.addEventListener('DOMContentLoaded',initializeReport);window.setTestData=setTestData;window.generateReport=generateReport;window.printReport=printReport;
+</script>
+</body>
+</html>
